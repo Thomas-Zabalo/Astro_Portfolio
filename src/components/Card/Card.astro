@@ -10,17 +10,28 @@ interface Props {
   colorText?: string;
   height?: string;
   width?: string;
+  backgroundImageUrl?: string;
 }
 
-const { title, body, colSpan, rowSpan, href, colorText, height } = Astro.props;
+const {
+  title,
+  body,
+  colSpan,
+  rowSpan,
+  href,
+  colorText,
+  height,
+  backgroundImageUrl,
+} = Astro.props;
 ---
 
 <div
-  class={`card h-max sm:h-auto group overflow-hidden transform-y-[-40%] bg-[#161616] border border-[#161616] hover:border-white hover:duration-300 shadow-lg rounded-lg p-6 align-start flex-none ${
+  class={`card bg-cover h-max sm:h-auto group overflow-hidden transform-y-[-40%] bg-[#161616] border border-[#161616] hover:border-white hover:duration-300 shadow-lg rounded-lg p-6 align-start flex-none ${
     height || "h-full"
   } justify-start relative transform perspective-1200 w-full transition duration-75 ease-in-out col-span-1 ${
     colSpan || "md:col-span-2"
   } ${rowSpan || ""}`}
+  style={{ backgroundImage: `url(${backgroundImageUrl})` }}
 >
   {
     href ? (
@@ -36,5 +47,3 @@ const { title, body, colSpan, rowSpan, href, colorText, height } = Astro.props;
     )
   }
 </div>
-
-  

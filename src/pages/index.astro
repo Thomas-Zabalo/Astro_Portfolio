@@ -40,7 +40,9 @@ import Techno from "../components/Techno.astro";
 	<section
 		class="text-white m-auto p-2 grid gap-2 max-w-6xl relative w-full sm:p-4 sm:gap-2 md:grid-cols-2 md:gap-3 md:p-6 lg:h-screen lg:grid-rows-4 lg:grid-cols-5 lg:gap-4 lg:max-h-[800px]"
 	>
-		<h2 class="text-3xl font-bold col-span-full h2-courbe">
+		<h2
+			class="text-3xl font-bold col-span-full h2-courbe"
+		>
 			Ce que je sais faire avec les<br />
 			<b class="text-[#FF6E40]">technologies</b>
 		</h2>
@@ -68,9 +70,13 @@ import Techno from "../components/Techno.astro";
 		height: auto;
 		z-index: -1;
 	}
+	@media screen and (max-width: 900px) {
+		.h2-courbe{margin: 20px;}
+	}
+	
 	.h2-courbe::after {
 		content: url("../../public/Line.svg");
 		display: block;
-		transform: translateY(-20px); 
+		transform: translateY(-20px);
 	}
 </style>

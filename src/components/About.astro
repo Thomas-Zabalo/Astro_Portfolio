@@ -2,9 +2,10 @@
 import Card from "./Card/Card.astro";
 ---
 
-<Card colSpan="md:col-span-1" rowSpan="md:row-span-6" title="A propos de moi">
-    <div class="flex flex-col gap-2">
-        <p class="text-sm font-light">
+<Card colSpan="md:col-span-1" rowSpan="md:row-span-6">
+    <div class="flex flex-col justify-around gap-2">
+        <h2 class="text-white text-xl font-bold pb-3">A propos de moi</h2>
+        <p class="text-sm font-light pb-3">
             Salut, je m'appelle Thomas et je suis développeur Front-end, en <b
                 class="font-bold">France</b
             >
@@ -21,12 +22,14 @@ import Card from "./Card/Card.astro";
                 <li>Nodejs</li>
             </ul>
         </p>
-        <p class="text-sm font-light">
+        <p class="text-sm font-light py-3">
             A part le developpement web, j'aime beaucoup le dessin, l'animation
             et la modélisation 3D, la photographie ainsi que les voyages.
         </p>
-        <p class="text-sm font-light">
-            J'aimerais que grâce à ses technologies, trouver le meilleur environnement pour travailler le plus rapidement et de manière optimisée.
+        <p class="text-sm font-light py-3">
+            J'aimerais que grâce à ses technologies, trouver le meilleur
+            environnement pour travailler le plus rapidement et de manière
+            optimisée.
         </p>
     </div>
 </Card>
