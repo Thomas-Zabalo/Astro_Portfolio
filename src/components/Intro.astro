@@ -1,0 +1,25 @@
+---
+import Card from "./Card/Card.astro";
+---
+
+<Card colSpan="md:col-span-2" rowSpan="md:row-span-2">
+	<div class="flex w-full h-full">
+		<div
+			class="flex flex-col h-full max-h-[300px]"
+		>
+			<div class="flex justify-evenly flex-col h-full">
+				<h6 class="text-sm font-medium m-0 text-gray-500">Bienvenue</h6>
+				<p class="m-0 font-normal text-xl">
+					Salut 👋, je m’appelle 
+					<b class="font-bold">Thomas</b>
+					et je suis développeur 
+					<b class="font-bold text-[#FF6E40]">Front-end</b>
+				</p>
+
+				<p class="underline underline-offset-2 font-light text-[#CCCCCC]">					
+					Basé sur Montauban				
+				</p>
+			</div>
+		</div>
+	</div>
+</Card>

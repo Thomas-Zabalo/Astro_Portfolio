@@ -1,0 +1,76 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Intro.astro";
+import About from "../components/About.astro";
+import Contact from "../components/Contact.astro";
+import Time from "../components/Time.astro";
+import Now from "../components/Work.astro";
+import Illustration from "../components/Illustration.astro";
+import Skill from "../components/Skill.astro";
+import Showtime from "../components/Showtime.astro";
+import Techno from "../components/Techno.astro";
+---
+
+<Layout title="Bienvenue sur mon Portfolio">
+	<main
+		class="text-white m-auto p-2 grid gap-2 max-w-6xl relative w-full sm:p-4 sm:gap-2 md:grid-cols-2 md:gap-3 md:p-6 lg:h-screen lg:grid-rows-7 lg:grid-cols-4 lg:gap-4 lg:max-h-[800px]"
+	>
+		<Card />
+		<Illustration />
+		<About />
+		<Contact />
+		<Time />
+		<Now />
+		<Skill />
+	</main>
+
+	<section
+		class="text-white m-auto p-2 grid gap-2 max-w-6xl relative w-full sm:p-4 sm:gap-2 md:grid-cols-2 md:gap-3 md:p-6 lg:h-screen lg:grid-rows-4 lg:grid-cols-3 lg:gap-4 lg:max-h-[800px]"
+	>
+		<h2 class="text-3xl font-bold col-span-full h2-courbe">
+			Sélection de quelques-uns de<br />
+			<b class="text-[#FF6E40]">mes travaux</b>
+		</h2>
+
+		<Showtime />
+		<Showtime />
+		<Showtime />
+	</section>
+
+	<section
+		class="text-white m-auto p-2 grid gap-2 max-w-6xl relative w-full sm:p-4 sm:gap-2 md:grid-cols-2 md:gap-3 md:p-6 lg:h-screen lg:grid-rows-4 lg:grid-cols-5 lg:gap-4 lg:max-h-[800px]"
+	>
+		<h2 class="text-3xl font-bold col-span-full h2-courbe">
+			Ce que je sais faire avec les<br />
+			<b class="text-[#FF6E40]">technologies</b>
+		</h2>
+
+		<Techno />
+		<Techno />
+		<Techno />
+		<Techno />
+		<Techno />
+		<Techno />
+		<Techno />
+		<Techno />
+		<Techno />
+		<Techno />
+	</section>
+</Layout>
+
+<style>
+	.astro-a {
+		position: absolute;
+		left: 50%;
+		top: 25%;
+		transform: translatex(-50%);
+		width: 520px;
+		height: auto;
+		z-index: -1;
+	}
+	.h2-courbe::after {
+		content: url("../../public/Line.svg");
+		display: block;
+		transform: translateY(-20px); 
+	}
+</style>

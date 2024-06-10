@@ -1,0 +1,41 @@
+---
+import { getCurrentTimeInFrance, formatTimeForFrance } from "../lib/helper";
+import Card from "./Card/Card.astro";
+---
+
+<script>
+  import { onCleanup, onMount } from "solid-js";
+  import { formatTimeForFrance } from "../lib/helper";
+
+  let interval: ReturnType<typeof setInterval>;
+
+  function updateClock() {
+    const timeDisplay = document.getElementById("timeDisplay");
+    const now = new Date();
+
+    if (timeDisplay) {
+      timeDisplay.textContent = formatTimeForFrance(now);
+      timeDisplay.setAttribute("datetime", now.toISOString());
+    }
+  }
+
+  onMount(() => {
+    interval = setInterval(updateClock, 1000);
+  });
+
+  onCleanup(() => {
+    clearInterval(interval);
+  });
+</script>
+
+<Card colSpan="lg:col-span-2" rowSpan="md:row-span-2">
+  <time
+    datetime=""
+    id="timeDisplay"
+    class="text-2xl xl:text-5xl xl:whitespace-nowrap w-full h-full font-serif flex justify-center items-center"
+  >
+    {formatTimeForFrance(getCurrentTimeInFrance())}
+  </time>
+</Card>
+
+
