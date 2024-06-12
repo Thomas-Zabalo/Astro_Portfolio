@@ -1,21 +1,46 @@
 ---
 import Card from "./Card/Card.astro";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  title?: string;
+  description?: string;
+  langage?: string;
+  icon?: string;
+}
+
+const { title, description, icon, langage } = Astro.props;
 ---
 
-<Card colSpan="md:col-span-1" rowSpan="md:row-span-2" title="WORK">
-    <div class="flex justify-between w-full items-start mb-2">
-      <div class="flex flex-col">
-        <span class="text-xs text-gray-300 py-3"
-          >Jetez un œil à de mes <b class="underline underline-offset-1"
-            >travaux.</b
-          >
-        </span>
-        <span class="text-xs text-gray-300"
-          >Réalisés durant <b class="underline underline-offset-1">mes études</b> et
-          lors de mon <b class="underline underline-offset-1">temps libre.</b
-          ></span
-        >
+<Card
+  colSpan="md:col-span-1"
+  rowSpan="md:row-span-2 lg:row-span-4"
+  title={title}
+>
+  <div
+    class="absolute top-0 right-0 w-8 h-8 m-2 flex items-center justify-center bg-white rounded-full"
+  >
+    <Icon name={icon} />
+  </div>
+  <div class="flex justify-between w-full items-start mb-2">
+    <div class="flex flex-col w-full">
+      <div class="py-4 w-full h-40 md:h-40">
+        <img src="" class="rounded w-full h-full object-cover" />
       </div>
+      <span class="text-sm italic text-gray-300 py-3">
+        {description}
+      </span>
+      <span class="text-md text-gray-300 font-bold">
+        {langage}
+      </span>
     </div>
-  </Card>
-  
+  </div>
+</Card>
+
+<style lang="css">
+  [data-icon] {
+    color: rgb(0, 0, 0);
+    /* OR */
+    fill: rgb(0, 0, 0);
+  }
+</style>
