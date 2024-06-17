@@ -1,0 +1,36 @@
+---
+import Card from "../Card/Card.astro";
+import { LINKS } from "../../lib/constants.js";
+---
+<Card colSpan="md:col-span-3 lg:col-span-1 xl:col-span-1" rowSpan="md:row-span-1 lg:row-span-4 xl:row-span-4">
+    <div class="flex flex-col h-full justify-evenly">
+      <section class="flex items-center">
+        <h2 class="text-white text-xl font-bold">CONTACT</h2>
+      </section>
+      <address class="flex flex-col mt-4">
+        <h2 class="text-gray-500">Adresse Mail</h2>
+        <p>thomas.zabalo@gmail.com</p>
+        <p class="font-thin">France</p>
+      </address>
+      <div class="flex flex-col mt-4 w-fit">
+        <h2 class="text-gray-500">Réseaux sociaux</h2>
+        <ul>
+          <li>
+            <a href={LINKS.linkedin} target="_blank">Linkedin</a>
+          </li>
+          <li>
+            <a href={LINKS.github} target="_blank">Github</a>
+          </li>
+          <li>
+            <a href={LINKS.tiktok} target="_blank">Tiktok</a>
+          </li>
+          <li>
+            <a href={LINKS.instagram} target="_blank">Instagram</a>
+          </li>
+          <li>
+            <a href={LINKS.discord} target="_blank">Discord</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </Card>

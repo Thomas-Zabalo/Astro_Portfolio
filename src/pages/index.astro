@@ -2,77 +2,19 @@
 import Layout from "../layouts/Layout.astro";
 import Presentation from "../components/Intro.astro";
 import About from "../components/About.astro";
-import Contact from "../components/Contact.astro";
+import Contact from "../components/Contact/Contact.astro";
 import Time from "../components/Time.astro";
 import Work from "../components/Work.astro";
 import Skill from "../components/Skill.astro";
 import Showtime from "../components/Showtime.astro";
 import Techno from "../components/Techno.astro";
-
-const technologies = [
-	{ name: "JavaScript", icon: "mdi:language-javascript" },
-	{ name: "React", icon: "mdi:react" },
-	{ name: "React Native", icon: "tabler:brand-react-native" },
-	{ name: "Next", icon: "ri:nextjs-fill" },
-	{ name: "Astro", icon: "tabler:brand-astro" },
-	{ name: "PHP", icon: "mdi:language-php" },
-	{ name: "Laravel", icon: "mdi:laravel" },
-	{ name: "NodeJS", icon: "mdi:nodejs" },
-	{ name: "SQL", icon: "mdi:sql-query" },
-	{ name: "Tailwind", icon: "mdi:tailwind" },
-];
-const works = [
-	{
-		title: "Application PHP",
-		link: "https://github.com/mmicastres/sae301-Thomas-Zabalo",
-		description:
-			"Création d'une application web en PHP. Permet au utilisateur d'ajouter, commenter des projets",
-		langage: "PHP | TWIG",
-		icon: "mdi:github",
-	},
-	{
-		title: "Application React",
-		link: "https://github.com/Thomas-Zabalo/React",
-		description:
-			"Création d'une application web en React. Permet au utilisateur de créer un personnage du jeu Baldur Gate 3",
-		langage: "React | Laravel",
-		icon: "mdi:github",
-	},
-	{
-		title: "Application Mobile",
-		link: "https://github.com/Thomas-Zabalo/React-native",
-		description:
-			"Création d'une application mobile en React Native. Permet au utilisateur de créer un personnage du jeu Baldur Gate 3",
-		langage: "React Native | Expo | API",
-		icon: "mdi:github",
-	},
-	{
-		title: "Node JS Experimentation",
-		link: "",
-		description: "React Native",
-		langage: "React Native",
-		icon: "mdi:github",
-	},
-	{
-		title: "Jeux Web",
-		link: "https://github.com/Thomas-Zabalo/Phaser",
-		description: "Création d'un jeu en 2D",
-		langage: "Phaser | Js",
-		icon: "mdi:github",
-	},
-	{
-		title: "Call API",
-		link: "https://github.com/mmicastres/s3-sae-thomas-etienne-florestan",
-		description:
-			"Création d'un applicaiton web sur le monde de GHIBLI pour permettre au utilisateur de voir les avis des films",
-		langage: "JS | API",
-		icon: "mdi:github",
-	},
-];
+import Form from "../components/Contact/Content.astro";
+import { works } from "../lib/constants.js";
+import { technologies } from "../lib/constants.js";
 ---
 
 <Layout title="Thomas-Web">
-	<div class="md:pt-16 pt-16">
+	<div class="md:pt-0 pt-10">
 		<main
 			class="text-white m-auto p-2 grid gap-2 max-w-6xl relative w-full sm:p-4 sm:gap-2 md:grid-cols-2 md:gap-3 md:p-6 lg:h-screen lg:grid-rows-7 lg:grid-cols-4 lg:gap-4 lg:max-h-[800px]"
 		>
@@ -88,13 +30,14 @@ const works = [
 			class="text-white m-auto p-2 grid gap-2 max-w-6xl sm:p-4 sm:gap-2 md:grid-cols-2 md:gap-3 md:p-6 lg:grid-rows-1 lg:grid-cols-4 lg:gap-4 lg:max-h-[800px]"
 		>
 			<h2
-				class="md:pt-24 py-4 md:text-start text-center text-white text-3xl font-bold col-span-full h2-courbe"
+				class="md:pt-24 pb-4 pt-20 md:text-start text-center text-white text-3xl font-bold col-span-full h2-courbe"
 			>
 				Quelqu'uns de mes<br />
-				<b class="text-[#FF6E40] ">travaux</b>
+				<b class="text-[#FF6E40]">travaux</b>
 				que j'ai réalisé
 			</h2>
 		</section>
+		<!-- Works -->
 		<div>
 			<section
 				class="text-white m-auto p-2 grid gap-2 max-w-6xl relative w-full sm:p-4 sm:gap-2 md:grid-cols-2 md:gap-3 md:p-6 lg:h-screen lg:grid-rows-8 lg:grid-cols-3 lg:gap-4 lg:max-h-[800px]"
@@ -102,35 +45,56 @@ const works = [
 				{
 					works.map((work) => (
 						<Showtime
+							href={work.link}
 							title={work.title}
 							description={work.description}
 							langage={work.langage}
 							icon={work.icon}
+							image={work.image}
 						/>
 					))
 				}
 			</section>
 		</div>
-
-		<section id="technologie"
-			class=" text-white m-auto p-2 grid gap-2 max-w-6xl sm:p-4 sm:gap-2 md:grid-cols-2 md:gap-3 md:p-6 lg:grid-rows-1 lg:grid-cols-4 lg:gap-4 lg:max-h-[800px]"
+		<!-- Technologies -->
+		<section
+			id="technologie"
+			class="text-white m-auto p-2 grid gap-2 max-w-6xl sm:p-4 sm:gap-2 md:grid-cols-2 md:gap-3 md:p-6 lg:grid-rows-1 lg:grid-cols-4 lg:gap-4 lg:max-h-[800px]"
 		>
-			<h2 class="md:pt-24 pt-4 md:text-start text-center text-white text-3xl font-bold col-span-full h2-courbe">
+			<h2
+				class="md:pt-24 pb-4 pt-20 md:text-start text-center text-white text-3xl font-bold col-span-full h2-courbe"
+			>
 				Quel sont les<br />
 				<b class="text-[#FF6E40]">technologies</b>
 				que j'utilise
 			</h2>
 		</section>
-
-		<div >
+		<div>
 			<section
-				class="text-white m-auto p-2 grid gap-2 max-w-6xl relative w-full sm:p-4 sm:gap-2 md:grid-cols-2 md:gap-3 md:p-6 lg:grid-rows-4 lg:grid-cols-3 lg:gap-4 lg:max-h-[800px]"
+				class="text-white m-auto p-2 grid gap-2 max-w-6xl relative w-full sm:p-4 sm:gap-2 md:grid-cols-2 md:gap-3 md:p-6 lg:grid-rows-2 lg:grid-cols-5 lg:gap-4 lg:max-h-[800px]"
 			>
 				{
 					technologies.map((tech) => (
 						<Techno name={tech.name} icon={tech.icon} />
 					))
 				}
+			</section>
+		</div>
+		<!-- Contact -->
+		<section
+			id="contact"
+			class="text-white m-auto p-2 grid gap-2 max-w-6xl sm:p-4 sm:gap-2 md:grid-cols-2 md:gap-3 md:p-6 lg:grid-rows-1 lg:grid-cols-4 lg:gap-4 lg:max-h-[800px]"
+		>
+			<h2
+				class="md:pt-24 pb-4 pt-20 md:text-start text-center text-white text-3xl font-bold col-span-full h2-courbe"
+			>
+				<b class="text-[#FF6E40]">Contactez-moi</b>
+			</h2>
+		</section>
+		<div>
+			<section
+			>
+			<Form />
 			</section>
 		</div>
 	</div>
@@ -151,11 +115,9 @@ const works = [
 			margin: 20px;
 		}
 		.h2-courbe::after {
-		content: url("/Line.svg");
-		display: block;
-		transform: translateY(-20px);
+			content: url("/Line.svg");
+			display: block;
+			transform: translateY(-20px);
+		}
 	}
-	}
-
-
 </style>

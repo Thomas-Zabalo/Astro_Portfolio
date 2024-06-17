@@ -1,10 +1,17 @@
----
-
----
-
-<header class="w-full z-10 mx-auto mb-12 sm:mb-16 fixed left-0 right-0 bg-[#282828] transition duration-200">
-    <nav>
-        <ul class="flex gap-12 text-white p-4 justify-center">
+<header class="w-full z-10 mx-auto sticky top-0 left-0 right-0 bg-[#282828] transition duration-200">
+    <nav class="container mx-auto p-4 lg:p-0 lg:px-4 flex justify-between items-center">
+        <div class="text-white font-bold text-xl">MyLogo</div>
+        <div class="block lg:hidden">
+            <button id="nav-toggle" class="text-white focus:outline-none">
+                <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path id="hamburger-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+                <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <ul class="hidden lg:flex lg:gap-12 text-white p-4 justify-center flex-row">
             <li>
                 <a href="#home" class="nav-link transition duration-200 hover:text-gray-400 font-bold">HOME</a>
             </li>
@@ -14,6 +21,63 @@
             <li>
                 <a href="#technologie" class="nav-link transition duration-200 hover:text-gray-400 font-bold">TECHNOLOGIES</a>
             </li>
+            <li>
+                <a href="#contact" class="nav-link transition duration-200 hover:text-gray-400 font-bold">CONTACT</a>
+            </li>
         </ul>
     </nav>
 </header>
+
+<div id="mobile-nav-menu" class="hidden lg:hidden bg-[#282828] text-white p-4 absolute top-14 left-0 right-0 z-20">
+    <ul class="flex flex-col gap-4">
+        <li>
+            <a href="#home" class="nav-link transition duration-200 hover:text-gray-400 font-bold">HOME</a>
+        </li>
+        <li>
+            <a href="#projet" class="nav-link transition duration-200 hover:text-gray-400 font-bold">PROJETS</a>
+        </li>
+        <li>
+            <a href="#technologie" class="nav-link transition duration-200 hover:text-gray-400 font-bold">TECHNOLOGIES</a>
+        </li>
+        <li>
+            <a href="#contact" class="nav-link transition duration-200 hover:text-gray-400 font-bold">CONTACT</a>
+        </li>
+    </ul>
+</div>
+
+<script>
+    const mobileNavMenu = document.getElementById("mobile-nav-menu");
+    const hamburgerIcon = document.getElementById("hamburger-icon");
+    const closeIcon = document.getElementById("close-icon");
+
+    document.getElementById("nav-toggle").addEventListener("click", function () {
+        if (mobileNavMenu.classList.contains("hidden")) {
+            mobileNavMenu.classList.remove("hidden");
+            hamburgerIcon.classList.add("hidden");
+            closeIcon.classList.remove("hidden");
+        } else {
+            mobileNavMenu.classList.add("hidden");
+            hamburgerIcon.classList.remove("hidden");
+            closeIcon.classList.add("hidden");
+        }
+    });
+
+    // Ajouter la gestion de sticky pour le menu mobile
+    window.addEventListener("scroll", function() {
+        if (window.innerWidth <= 768) {
+            if (window.scrollY > 0) {
+                mobileNavMenu.classList.add("sticky");
+            } else {
+                mobileNavMenu.classList.remove("sticky");
+            }
+        }
+    });
+</script>
+
+<style>
+    /* Style pour le menu mobile sticky */
+    #mobile-nav-menu.sticky {
+        position: fixed;
+        z-index: 10; /* Assure que le menu mobile reste au-dessus du reste du contenu */
+    }
+</style>

@@ -9,7 +9,7 @@ interface Props {
 const { name, icon } = Astro.props;
 ---
 
-<Card colSpan="md:col-span-1" rowSpan="md:row-span-2">
+<Card colSpan="md:col-span-1" rowSpan="md:row-span-1">
   <div class="relative">
     <div
       class="absolute top-0 left-0 w-8 h-8 flex items-center justify-center bg-white rounded-full"
@@ -19,12 +19,6 @@ const { name, icon } = Astro.props;
     <div class="pt-8 flex justify-between w-full items-start mb-2">
       <div class="flex flex-col">
         {name && <span class="text-xl font-bold m-0 z-20">{name}</span>}
-        <span class="text-xs text-gray-300"
-          >Réalisés durant <b class="underline underline-offset-1">mes études</b
-          > et lors de mon <b class="underline underline-offset-1"
-            >temps libre.</b
-          ></span
-        >
       </div>
     </div>
   </div>

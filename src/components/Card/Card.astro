@@ -1,6 +1,7 @@
 ---
 import Content from "./Content.astro";
 interface Props {
+  bool?: string;
   title?: string;
   body?: string;
   colSpan?: string;
@@ -13,6 +14,7 @@ interface Props {
 }
 
 const {
+  bool,
   title,
   body,
   colSpan,
@@ -24,22 +26,26 @@ const {
 } = Astro.props;
 ---
 
-<div
-  class={`card h-max sm:h-auto group overflow-hidden transform-y-[-40%] bg-[#161616] border border-[#161616] hover:border-white hover:duration-300 shadow-lg rounded-lg p-6 align-start flex-none ${
-    height || "h-full"
-  } justify-start relative transform perspective-1200 w-full transition duration-75 ease-in-out col-span-1 ${
-    colSpan || "md:col-span-2"
-  } ${rowSpan || ""}`}
-  style={{ backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: "cover", objectFit: "contain" }}
-  >
-  {
-    href ? (
-      <a href={href} class={`h-full w-full ${colorText || ""}`}>
+{
+  href ? (
+    <a
+      href={href}
+      class={`col-span-1 ${colSpan || "md:col-span-2"} ${rowSpan || ""} block h-full w-full`}
+    >
+      <div
+        class={`card flex flex-col h-full w-full group overflow-hidden bg-[#161616] border border-[#161616] hover:border-white hover:duration-300 shadow-lg rounded-lg p-6 align-start ${height || "h-full"} justify-start relative transform perspective-1200 transition duration-75 ease-in-out ${colorText || ""}`}
+        style={{
+          backgroundImage: `url(${backgroundImageUrl})`,
+          backgroundSize: "cover",
+          objectFit: "contain",
+        }}
+      >
         <Content title={title} body={body}>
           <slot />
         </Content>
+        {bool ? (
         <svg
-          class="h-6 float-right group-hover:text-primary-500 group-hover:translate-x-2 transition-transform ease-in-out duration-100 z-20"
+          class="h-6 absolute bottom-0 md:m-2 lg:m-5 right-0 group-hover:text-primary-500 group-hover:translate-x-2 transition-transform ease-in-out duration-100 z-20"
           xmlns="http://www.w3.org/2000/svg"
           width="1em"
           height="1em"
@@ -50,11 +56,25 @@ const {
             d="M5.536 21.886a1.004 1.004 0 0 0 1.033-.064l13-9a1 1 0 0 0 0-1.644l-13-9A1 1 0 0 0 5 3v18a1 1 0 0 0 .536.886"
           />
         </svg>
-      </a>
-    ) : (
-      <Content title={title} body={body}>
-        <slot />
-      </Content>
-    )
-  }
-</div>
+        ) : ("")}
+      </div>
+    </a>
+  ) : (
+    <div
+      class={`col-span-1 ${colSpan || "md:col-span-2"} ${rowSpan || ""} block h-full w-full`}
+    >
+      <div
+        class={`card flex h-full w-full group overflow-hidden bg-[#161616] border border-[#161616] hover:border-white hover:duration-300 shadow-lg rounded-lg p-6 align-start ${height || "h-full"} justify-start relative transform perspective-1200 transition duration-75 ease-in-out ${colorText || ""}`}
+        style={{
+          backgroundImage: `url(${backgroundImageUrl})`,
+          backgroundSize: "cover",
+          objectFit: "contain",
+        }}
+      >
+        <Content title={title} body={body}>
+          <slot />
+        </Content>
+      </div>
+    </div>
+  )
+}
