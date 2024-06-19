@@ -1,10 +1,10 @@
 ---
-
+import Message from "../message/Message.astro";
 ---
 
 <section class="">
     <div class="pb-8 lg:pb-16 l:pt-8 px-4 mx-auto max-w-screen-md">
-        <form id="contactForm" class="space-y-8">
+        <form id="contactForm" class="space-y-8" name="contact-form">
             <div>
                 <label
                     for="email"
@@ -14,7 +14,7 @@
                 <input
                     type="email"
                     id="email"
-                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-[#161616] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
                     placeholder="nom@gmail.com"
                     required
                 />
@@ -28,7 +28,7 @@
                 <input
                     type="text"
                     id="sujet"
-                    class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                    class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-[#161616] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
                     placeholder="C'est à quel sujet ?"
                     required
                 />
@@ -42,30 +42,67 @@
                 <textarea
                     id="message"
                     rows="6"
-                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-[#161616] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     placeholder="Laisse moi un message"
                     required></textarea>
             </div>
             <button
                 type="submit"
-                class="py-3 px-5 text-sm font-medium text-center bg-gray-800 text-white border-gray-700 border hover:bg-gray-700 transition duration-200 bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                class="py-3 px-5 text-sm font-medium text-center dark:bg-[#161616] text-white border-gray-700 border hover:bg-gray-700 transition duration-200 bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >Envoyer le message</button
             >
         </form>
+    </div>
+    <div
+        id="messageComponent"
+        class="hidden opacity-0 transition-opacity duration-300"
+    >
+        <Message />
     </div>
 </section>
 
 <script>
     const contactForm = document.getElementById("contactForm");
+    const messageComponent = document.getElementById("messageComponent");
 
     contactForm.addEventListener("submit", function (event) {
         event.preventDefault();
+
         const emailValue = document.getElementById("email").value;
         const sujetValue = document.getElementById("sujet").value;
         const messageValue = document.getElementById("message").value;
 
-        console.log(emailValue, sujetValue, messageValue);
-        // Save email to localStorage
-        localStorage.setItem("contactEmail", "message");
+        const url = import.meta.env.PUBLIC_ANYBODY;
+
+        const fetchOptions = {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+            },
+            body: JSON.stringify({
+                email: emailValue,
+                sujet: sujetValue,
+                message: messageValue,
+            }),
+        };
+
+        fetch(url, fetchOptions)
+            .then((response) => response.json())
+            .then((dataJSON) => {
+                contactForm.reset();
+                messageComponent.classList.remove("hidden");
+                messageComponent.classList.remove("opacity-0");
+
+                // Configure un délai pour cacher automatiquement le message après 5 secondes
+                setTimeout(function () {
+                    messageComponent.classList.add("opacity-0");
+                    setTimeout(function () {
+                        messageComponent.classList.add("hidden");
+                    }, 300); // Attendre la fin de la transition (300 ms) avant de cacher complètement
+                }, 5000); // 5000 millisecondes = 5 secondes
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     });
 </script>

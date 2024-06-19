@@ -1,6 +1,5 @@
 ---
 import Header from "../components/Header/Header.astro";
-import Message from "../components/message/Message.astro";
 interface Props {
 	title: string;
 }
@@ -21,13 +20,12 @@ const { title } = Astro.props;
 	<body id="home">
 		<Header />
 		<slot />
-		<Message />
 	</body>
 </html>
 <style is:global>
 	@font-face {
 		font-family: Neue;
-		src: url("/public/font/NeueMachina-Regular.otf") format("opentype");
+		src: url("/font/NeueMachina-Regular.otf") format("opentype");
 	}
 	:root {
 		--accent: 136, 58, 234;
