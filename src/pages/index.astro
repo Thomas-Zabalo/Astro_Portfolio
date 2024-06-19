@@ -1,13 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Presentation from "../components/Intro.astro";
-import About from "../components/About.astro";
+import Presentation from "../components/Intro/Intro.astro";
+import About from "../components/Intro/About.astro";
 import Contact from "../components/Contact/Contact.astro";
-import Time from "../components/Time.astro";
-import Work from "../components/Work.astro";
-import Skill from "../components/Skill.astro";
-import Showtime from "../components/Showtime.astro";
-import Techno from "../components/Techno.astro";
+import Time from "../components/Intro/Time.astro";
+import Work from "../components/Intro/Work.astro";
+import Skill from "../components/Intro/Skill.astro";
+import Showtime from "../components/Intro/Showtime.astro";
+import Techno from "../components/Intro/Techno.astro";
 import Form from "../components/Contact/Content.astro";
 import { works } from "../lib/constants.js";
 import { technologies } from "../lib/constants.js";
@@ -115,7 +115,7 @@ import { technologies } from "../lib/constants.js";
 			margin: 20px;
 		}
 		.h2-courbe::after {
-			content: url("/Line.svg");
+			content: url("assets/Line.svg");
 			display: block;
 			transform: translateY(-20px);
 		}

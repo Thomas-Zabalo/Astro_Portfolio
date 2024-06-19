@@ -1,6 +1,8 @@
 ---
-import Card from "./Card/Card.astro";
+import { Icon } from "astro-icon/components";
+import Card from "../Card/Card.astro";
 import { Image } from "astro:assets";
+import { IconI } from "../../lib/constants";
 ---
 
 	<Card colSpan="md:col-span-3" rowSpan="md:row-span-2">
@@ -26,7 +28,7 @@ import { Image } from "astro:assets";
 			<Image
 				width="200"
 				height="200"
-				src="/Moi.webp"
+				src={IconI.moi}
 				class="rounded w-auto max-h-[300px] select-none absolute right-[-110px] bottom-[-20px] z-[-1] opacity-50 md:opacity-100 md:relative md:right-auto md:bottom-auto md:z-auto pointer-events-none"
 				alt="memoji of gianmarco"
 			/>

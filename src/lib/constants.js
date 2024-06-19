@@ -6,8 +6,9 @@ export const LINKS = {
   discord: "https://discordapp.com/users/rubinoki",
 };
 
-export const Icon = {
-	logo: "/logo.svg"
+export const IconI = {
+	logo: "/assets/logo.svg",
+	moi: "/assets/Moi.webp"
 }
 
 export const technologies = [
